@@ -1,0 +1,13 @@
+.profile__edit-button {
+  min-width: 24px;
+  min-height: 24px;
+  background-color: unset;
+  border: 1px solid #ffffff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
