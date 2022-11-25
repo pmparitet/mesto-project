@@ -1,6 +1,10 @@
 .element__group {
   background: none;
-  border: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  overflow: hidden;
 }
 .element__group:hover {
   opacity: 0.5;
