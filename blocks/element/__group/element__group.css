@@ -1,0 +1,7 @@
+.element__group {
+  background: none;
+  border: none;
+}
+.element__group:hover {
+  opacity: 0.5;
+}
