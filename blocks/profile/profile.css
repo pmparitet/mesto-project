@@ -6,3 +6,22 @@
   flex-direction: row;
   align-items: flex-start;
 }
+
+@media screen and (max-width: 950px) {
+  .profile {
+    max-width: 700px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .profile {
+    max-width: 500px;
+    margin-top: 42px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 550px) {
+  .profile {
+    max-width: 320px;
+  }
+}

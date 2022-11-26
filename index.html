@@ -13,7 +13,7 @@
         <img src="./images/logo.png" alt="Логотип" class="header__logo" />
         <hr class="header__line" />
       </header>
-      <main>
+      <main class="main">
         <section class="profile">
           <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar" />
           <div class="profile__info">
@@ -198,7 +198,42 @@
           </div>
         </section>
       </main>
-      <footer class="footer">© 2022 Mesto Russia</footer>
+      <footer class="footer">
+        <p class="footer__copyright">© 2022 Mesto Russia</p>
+      </footer>
+      <div class="popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button">
+            <svg
+              width="33"
+              height="33"
+              viewBox="0 0 33 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M32.7905 29.5903L19.9905 16.7903L32.7905 3.99028L29.5905 0.790283L16.7905 13.5903L3.99053 0.790283L0.790527 3.99028L13.5905 16.7903L0.790527 29.5903L3.99053 32.7903L16.7905 19.9903L29.5905 32.7903L32.7905 29.5903Z"
+                fill="white"
+              />
+            </svg>
+          </button>
+          <form class="popup__form">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <fieldset class="popup__input-container">
+              <input type="text" class="popup__field" value="Жак-Ив Кусто" />
+              <input
+                type="text"
+                class="popup__field"
+                value="Исследователь океана"
+              />
+            </fieldset>
+
+            <button class="popup__submit-button" type="button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>

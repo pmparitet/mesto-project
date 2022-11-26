@@ -5,6 +5,7 @@
   margin: 0;
   border: 0;
   overflow: hidden;
+  cursor: pointer;
 }
 .element__group:hover {
   opacity: 0.5;

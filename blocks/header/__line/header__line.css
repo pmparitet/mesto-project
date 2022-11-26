@@ -5,3 +5,8 @@
   margin-top: 41px;
   margin-bottom: 0;
 }
+@media screen and (max-width: 550px) {
+  .header__line {
+    margin-top: 31px;
+  }
+}
