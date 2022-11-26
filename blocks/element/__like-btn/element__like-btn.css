@@ -1,12 +1,12 @@
-.element__group {
-  background: none;
+.element__like-btn {
+  background-color: unset;
   display: flex;
   padding: 0;
   margin: 0;
   border: 0;
-  overflow: hidden;
   cursor: pointer;
+  outline: none;
 }
-.element__group:hover {
+.element__like-btn:hover {
   opacity: 0.5;
 }

@@ -1,5 +1,16 @@
 .profile__edit-title {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .profile__edit-title {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 320px) {
+  .profile__edit-title {
+    justify-content: flex-end;
+  }
 }

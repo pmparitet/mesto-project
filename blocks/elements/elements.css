@@ -10,6 +10,7 @@
 }
 @media screen and (max-width: 550px) {
   .elements {
+    margin-top: 36px;
     column-gap: 0;
   }
 }
