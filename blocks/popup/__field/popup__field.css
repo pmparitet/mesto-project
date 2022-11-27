@@ -10,6 +10,7 @@
   background-color: transparent;
   margin-bottom: 30px;
   padding: 0;
+  outline: 0;
 }
 .popup__field:focus {
   outline: none;
