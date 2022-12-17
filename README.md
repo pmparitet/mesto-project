@@ -18,3 +18,6 @@
 - CSS
 - Grid
 - Flex
+- JS
+
+https://pmparitet.github.io/mesto-project/
