@@ -57,7 +57,7 @@ closeEditForm.addEventListener("click", function () {
 });
 editFormElement.addEventListener("submit", editSubmitHandler);
 
-// п.2 Шесть карточек «из коробки» + п.5 Лайк карточки
+// п.2 Шесть карточек «из коробки» + п.5 Лайк карточки + п.6 Удаление карточки
 const initialCards = [
   {
     name: "Архыз",
@@ -102,6 +102,11 @@ function addCard(card, addMethod) {
   const likeCard = cardElement.querySelector(".element__like-btn");
   likeCard.addEventListener("click", function (evt) {
     evt.target.classList.toggle("element__like-btn_active");
+  });
+  const deleteCardBtn = cardElement.querySelector(".element__delete-btn");
+  deleteCardBtn.addEventListener("click", function () {
+    const deleteItem = deleteCardBtn.closest(".element");
+    deleteItem.remove();
   });
 
   switch (addMethod) {
