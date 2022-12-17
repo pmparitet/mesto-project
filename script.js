@@ -57,6 +57,27 @@ closeEditForm.addEventListener("click", function () {
 });
 editFormElement.addEventListener("submit", editSubmitHandler);
 
+// п.7 Открытие попапа с картинкой
+const imgPopup = document.querySelector("#img-popup");
+const closeImgPopup = imgPopup.querySelector(".popup__close-button");
+
+function imgOpenHandler(card) {
+  const imgCard = card.querySelector(".element__mask-group");
+  const titleCard = card.querySelector(".element__title");
+  const popupImage = imgPopup.querySelector(".popup__image");
+  const popupTitile = imgPopup.querySelector(".popup__image-name");
+
+  popupImage.src = imgCard.src;
+  popupImage.alt = imgCard.alt;
+  popupTitile.textContent = titleCard.textContent;
+
+  openPopup(imgPopup);
+}
+
+closeImgPopup.addEventListener("click", function () {
+  closePopup(imgPopup);
+});
+
 // п.2 Шесть карточек «из коробки» + п.5 Лайк карточки + п.6 Удаление карточки
 const initialCards = [
   {
@@ -103,10 +124,16 @@ function addCard(card, addMethod) {
   likeCard.addEventListener("click", function (evt) {
     evt.target.classList.toggle("element__like-btn_active");
   });
+
   const deleteCardBtn = cardElement.querySelector(".element__delete-btn");
   deleteCardBtn.addEventListener("click", function () {
     const deleteItem = deleteCardBtn.closest(".element");
     deleteItem.remove();
+  });
+
+  const imgCard = cardElement.querySelector(".element__mask-group");
+  imgCard.addEventListener("click", function () {
+    imgOpenHandler(cardElement);
   });
 
   switch (addMethod) {
