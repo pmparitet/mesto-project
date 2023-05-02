@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./pages/index.css" />
+  <title>Mesto</title>
+</head>
+
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img src="./images/logo.svg" alt="Логотип" class="header__logo" />
+    </header>
+    <main class="main">
+      <section class="profile">
+        <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar" />
+        <div class="profile__info">
+          <div class="profile__edit-title">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button" type="button">
+              <img src="./images/pensil.svg" alt="Редактирование" />
+            </button>
+          </div>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button" type="button">
+          <img src="./images/plus.svg" alt="Добавить" class="profile__add-button-img" />
+        </button>
+      </section>
+      <section class="elements"></section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup" id="editForm">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">
+          <img src="./images/close-icon.svg" alt="Закрыть окно" class="popup__close-button-img" />
+        </button>
+        <form class="popup__form" name="editForm">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <input id="name-input" name="nameInput" type="text" class="popup__field" value="" minlength="2"
+              maxlength="40" required pattern="^[а-яА-ЯёЁa-zA-Z\-\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+            <span class="name-input-error popup__message-error"></span>
+            <input id="jobe-input" name="jobeInput" type="text" class="popup__field" value="" minlength="2"
+              maxlength="200" required pattern="^[а-яА-ЯёЁa-zA-Z\-\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+            <span class="jobe-input-error popup__message-error"></span>
+          </fieldset>
+
+          <button class="popup__submit-button" type="submit">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="addCardForm">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">
+          <img src="./images/close-icon.svg" alt="Закрыть окно" class="popup__close-button-img" />
+        </button>
+        <form class="popup__form" name="addCardForm">
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__input-container">
+            <input id="title-input" name="nameInput" type="text" class="popup__field" value="" placeholder="Название"
+              minlength="2" maxlength="30" required pattern="^[а-яА-ЯёЁa-zA-Z\-\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" />
+            <span class="title-input-error popup__message-error"></span>
+            <input id="url-input" name="urlInput" type="url" class="popup__field" value=""
+              placeholder="Ссылка на картинку" required />
+            <span class="url-input-error popup__message-error"></span>
+          </fieldset>
+
+          <button class="popup__submit-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_img" id="img-popup">
+      <div class="popup__container popup__container_img">
+        <button class="popup__close-button" type="button">
+          <img src="./images/close-icon.svg" alt="Закрыть окно" class="popup__close-button-img" />
+        </button>
+        <img src="" alt="" class="popup__image" />
+        <h3 class="popup__image-name"></h3>
+      </div>
+    </div>
+  </div>
+  <template id="card-template">
+    <article class="element">
+      <button class="element__delete-btn" type="button"></button>
+      <img src="" alt="" class="element__mask-group" />
+      <div class="element__container">
+        <h2 class="element__title"></h2>
+        <button class="element__like-btn" type="button"></button>
+      </div>
+    </article>
+  </template>
+  <script type="module" src="./index.js"></script>
+</body>
+
+</html>
