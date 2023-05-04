@@ -35,7 +35,6 @@ const isValid = (options, formElement, inputElement) => {
 
 // проверка всех полей на валидность
 const hasInvalidInput = (inputList) => {
-  console.log(inputList)
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   })

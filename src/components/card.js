@@ -5,6 +5,10 @@ const cardTemplate = document.querySelector("#card-template").content;
 // секция для вставки карточек
 const elements = document.querySelector(".elements");
 
+function likeCardToggle(evt) {
+  evt.target.classList.toggle("element__like-btn_active");
+}
+
 // создание карточки
 function createCard(card) {
   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
@@ -17,16 +21,14 @@ function createCard(card) {
   imgCardElement.setAttribute("alt", card.name);
   titleCardElement.textContent = card.name;
 
-  likeCard.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("element__like-btn_active");
-  });
+  likeCard.addEventListener("click", likeCardToggle);
 
   deleteCardBtn.addEventListener("click", function () {
     cardElement.remove();
   });
 
   imgCardElement.addEventListener("click", function () {
-    handleImgOpen(cardElement);
+    handleImgOpen(imgCardElement, titleCardElement);
   });
 
   return cardElement;

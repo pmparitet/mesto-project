@@ -4,14 +4,17 @@ import { addCard } from './card.js'
 const main = document.querySelector(".main");
 const editButton = main.querySelector(".profile__edit-button");
 const addButton = main.querySelector(".profile__add-button");
-const editFormElement = document.querySelector("#editForm");
-const addCardFormElement = document.querySelector("#addCardForm");
+const editPopupElement = document.querySelector("#editForm");
+const addCardPopupElement = document.querySelector("#addCardForm");
 // для ф. handleAddSubmit()
-const nameInputAddCardForm = addCardFormElement.querySelector(
+const nameInputAddCardForm = addCardPopupElement.querySelector(
   ".popup__field[name='nameInput']"
 );
-const urlInputAddCardForm = addCardFormElement.querySelector(
+const urlInputAddCardForm = addCardPopupElement.querySelector(
   ".popup__field[name='urlInput']"
+);
+const btnSubmitAddCardForm = addCardPopupElement.querySelector(
+  ".popup__submit-button"
 );
 // для ф. handleImgOpen()
 const imgPopup = document.querySelector("#img-popup");
@@ -20,22 +23,22 @@ const popupTitile = imgPopup.querySelector(".popup__image-name");
 // для ф. openEditForm(), handleProfileFormSubmit()
 const titleEditForm = main.querySelector(".profile__title");
 const subtitleEditForm = main.querySelector(".profile__subtitle");
-const nameInputEditForm = editFormElement.querySelector(
+const nameInputEditForm = editPopupElement.querySelector(
   ".popup__field[name='nameInput']"
 );
-const jobeInputEditForm = editFormElement.querySelector(
+const jobeInputEditForm = editPopupElement.querySelector(
   ".popup__field[name='jobeInput']"
 );
-const closeEditForm = editFormElement.querySelector(".popup__close-button");
-const closeAddForm = addCardFormElement.querySelector(".popup__close-button");
-const closeImgPopup = imgPopup.querySelector(".popup__close-button");
+const btnCloseEditPopup = editPopupElement.querySelector(".popup__close-button");
+const btnCloseAddPopup = addCardPopupElement.querySelector(".popup__close-button");
+const btnCloseImgPopup = imgPopup.querySelector(".popup__close-button");
 
 // откр.формы профиля и подстановка значений в поля формы
 function openEditForm() {
   nameInputEditForm.value = titleEditForm.textContent;
   jobeInputEditForm.value = subtitleEditForm.textContent;
 
-  openPopup(editFormElement);
+  openPopup(editPopupElement);
 }
 
 // сохр. значений полей формы в блок профиля
@@ -45,13 +48,15 @@ function handleProfileFormSubmit(evt) {
   titleEditForm.textContent = nameInputEditForm.value;
   subtitleEditForm.textContent = jobeInputEditForm.value;
 
-  closePopup(editFormElement);
+  closePopup(editPopupElement);
 }
 
 // откр. попапа с картинкой
-function handleImgOpen(card) {
-  const imgCard = card.querySelector(".element__mask-group");
-  const titleCardImg = card.querySelector(".element__title");
+function handleImgOpen(imgCard, titleCardImg) {
+  // очистка попапа после закрытия картинки
+  popupImage.src = "";
+  popupImage.alt = "";
+  popupTitile.textContent = "";
 
   popupImage.src = imgCard.src;
   popupImage.alt = imgCard.alt;
@@ -61,8 +66,9 @@ function handleImgOpen(card) {
 }
 
 // Форма добавления карточки
-function addCardForm() {
-  openPopup(addCardFormElement);
+function openAddCardPopup() {
+
+  openPopup(addCardPopupElement);
 }
 
 // создание карточки с картинкой и закрытие окна
@@ -75,14 +81,16 @@ function handleAddSubmit(evt) {
   };
   addCard(newCard, "prepend");
 
-  closePopup(addCardFormElement);
+  closePopup(addCardPopupElement);
   nameInputAddCardForm.value = "";
   urlInputAddCardForm.value = "";
+  btnSubmitAddCardForm.disabled = true;
+  btnSubmitAddCardForm.classList.add('popup__submit-button_inactive');
 }
 
-export { addCardForm,
-  editFormElement,
-  addCardFormElement,
+export { openAddCardPopup,
+  editPopupElement,
+  addCardPopupElement,
   openEditForm,
   handleProfileFormSubmit,
   handleAddSubmit,
@@ -92,7 +100,7 @@ export { addCardForm,
   popupTitile,
   editButton,
   addButton,
-  closeEditForm,
-  closeAddForm,
-  closeImgPopup
+  btnCloseEditPopup,
+  btnCloseAddPopup,
+  btnCloseImgPopup
 }

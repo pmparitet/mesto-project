@@ -2,49 +2,20 @@ import './pages/index.css'
 import { enableValidation } from './components/validate.js'
 import { closePopup, closePopupFromOverlay } from './components/utils.js'
 import { addCard } from './components/card.js'
-import { addCardForm,
-  editFormElement,
-  addCardFormElement,
+import { openAddCardPopup,
+  editPopupElement,
+  addCardPopupElement,
   openEditForm,
   handleProfileFormSubmit,
   handleAddSubmit,
   imgPopup,
-  popupImage,
-  popupTitile,
   editButton,
   addButton,
-  closeEditForm,
-  closeAddForm,
-  closeImgPopup
+  btnCloseEditPopup,
+  btnCloseAddPopup,
+  btnCloseImgPopup
 } from './components/modal.js'
-
-// хардкод массив с карточками
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+import initialCards from './components/cardImage.js'
 
 // рендер карточек из массива
 initialCards.forEach((card) => {
@@ -52,32 +23,28 @@ initialCards.forEach((card) => {
 });
 
 editButton.addEventListener("click", openEditForm);
-closeEditForm.addEventListener("click", function () {
-  closePopup(editFormElement);
+btnCloseEditPopup.addEventListener("click", function () {
+  closePopup(editPopupElement);
 });
-editFormElement.addEventListener("submit", handleProfileFormSubmit);
+editPopupElement.addEventListener("submit", handleProfileFormSubmit);
 
 // закрытие окна с картинкой
-closeImgPopup.addEventListener("click", function () {
+btnCloseImgPopup.addEventListener("click", function () {
   closePopup(imgPopup);
-  // очистка попапа после закрытия картинки
-  popupImage.src = "";
-  popupImage.alt = "";
-  popupTitile.textContent = "";
 });
 
-addButton.addEventListener("click", addCardForm);
-closeAddForm.addEventListener("click", function () {
-  closePopup(addCardFormElement);
+addButton.addEventListener("click", openAddCardPopup);
+btnCloseAddPopup.addEventListener("click", function () {
+  closePopup(addCardPopupElement);
 });
-addCardFormElement.addEventListener("submit", handleAddSubmit);
+addCardPopupElement.addEventListener("submit", handleAddSubmit);
 
 // закрытие мод. окна при клике на Overlay
-addCardFormElement.addEventListener("click", function (evt) {
-  closePopupFromOverlay(evt, addCardFormElement)
+addCardPopupElement.addEventListener("click", function (evt) {
+  closePopupFromOverlay(evt, addCardPopupElement)
 })
-editFormElement.addEventListener("click", function (evt) {
-  closePopupFromOverlay(evt, editFormElement)
+editPopupElement.addEventListener("click", function (evt) {
+  closePopupFromOverlay(evt, editPopupElement)
 })
 imgPopup.addEventListener("click", function (evt) {
   closePopupFromOverlay(evt, imgPopup)
