@@ -1,3 +1,4 @@
+import './pages/index.css'
 import { enableValidation } from './components/validate.js'
 import { closePopup, closePopupFromOverlay } from './components/utils.js'
 import { addCard } from './components/card.js'
@@ -91,5 +92,3 @@ enableValidation({
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__message-error_active'
 });
-
-

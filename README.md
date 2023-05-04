@@ -19,5 +19,8 @@
 - Grid
 - Flex
 - JS
+- Webpack
+- Babel
+- PostCSS
 
 https://pmparitet.github.io/mesto-project/
