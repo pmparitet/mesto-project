@@ -1,10 +1,8 @@
 // закрытие мод. окна по клавише Esc
 function closePopupFromKey(evt) {
   if (evt.key === 'Escape') {
-    const elArr = Array.from(document.querySelectorAll('.popup'))
-    elArr.forEach((el) => {
-      closePopup(el)
-    })
+    const el = document.querySelector('.popup_opened')
+    closePopup(el)
   }
 }
 

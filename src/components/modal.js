@@ -1,5 +1,6 @@
 import { openPopup, closePopup } from './utils.js'
 import { addCard } from './card.js'
+import { changeButtonClass } from './validate.js'
 
 const main = document.querySelector(".main");
 const editButton = main.querySelector(".profile__edit-button");
@@ -84,8 +85,8 @@ function handleAddSubmit(evt) {
   closePopup(addCardPopupElement);
   nameInputAddCardForm.value = "";
   urlInputAddCardForm.value = "";
-  btnSubmitAddCardForm.disabled = true;
-  btnSubmitAddCardForm.classList.add('popup__submit-button_inactive');
+
+  changeButtonClass('add', true, btnSubmitAddCardForm, 'popup__submit-button_inactive')
 }
 
 export { openAddCardPopup,

@@ -40,13 +40,26 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
+const changeButtonClass = (direction, disabled, buttonElement, inactiveButtonClass) => {
+  buttonElement.disabled = disabled;
+  switch (direction) {
+    case 'add':
+      buttonElement.classList.add(inactiveButtonClass);
+      break;
+    case 'remove':
+      buttonElement.classList.remove(inactiveButtonClass);
+      break;
+    default:
+      console.log('changeButtonClass-default')
+      break;
+  }
+}
+
 const toggleButtonState = (options, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(options.inactiveButtonClass);
+    changeButtonClass('add', true, buttonElement, options.inactiveButtonClass)
   } else {
-    buttonElement.disabled = false;
-    buttonElement.classList.remove(options.inactiveButtonClass);
+    changeButtonClass('remove', false, buttonElement, options.inactiveButtonClass)
   }
 };
 
@@ -65,10 +78,12 @@ const setEventListeners = (options, formElement) => {
 };
 
 // поиск всех форм на странице
-export const enableValidation = (options) => {
+const enableValidation = (options) => {
   const formList = Array.from(document.querySelectorAll(options.formSelector));
 
   formList.forEach((formElement) => {
     setEventListeners(options, formElement);
   });
 };
+
+export { enableValidation, changeButtonClass }
