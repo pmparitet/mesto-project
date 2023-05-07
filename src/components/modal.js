@@ -1,6 +1,7 @@
 import { openPopup, closePopup } from './utils.js'
 import { addCard } from './card.js'
 import { changeButtonClass } from './validate.js'
+import { editAvatar, editProfil, saveCard } from './api.js';
 
 const main = document.querySelector(".main");
 const editButton = main.querySelector(".profile__edit-button");
@@ -30,9 +31,48 @@ const nameInputEditForm = editPopupElement.querySelector(
 const jobeInputEditForm = editPopupElement.querySelector(
   ".popup__field[name='jobeInput']"
 );
+const btnSubmitEditForm = editPopupElement.querySelector(".popup__submit-button");
 const btnCloseEditPopup = editPopupElement.querySelector(".popup__close-button");
 const btnCloseAddPopup = addCardPopupElement.querySelector(".popup__close-button");
 const btnCloseImgPopup = imgPopup.querySelector(".popup__close-button");
+// для Аватара
+const profileOverlay = main.querySelector(".profile__overlay");
+const profileAvatar = profileOverlay.querySelector(".profile__avatar");
+const editAvatarPopupElement = document.querySelector("#editAvatar");
+const avatarUrlInput = editAvatarPopupElement.querySelector(
+  ".popup__field[name='avatarUrlInput']"
+);
+const btnCloseEditAvatarPopup = editAvatarPopupElement.querySelector(".popup__close-button");
+const btnSubmitAvatarPopup = editAvatarPopupElement.querySelector(".popup__submit-button");
+
+// откр.формы изм. аватара и подстановка значения в поле формы
+function openEditAvatarPopup() {
+  avatarUrlInput.value = profileAvatar.src;
+  openPopup(editAvatarPopupElement);
+}
+
+// сохр. Аватара
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+
+  btnSubmitAvatarPopup.textContent = 'Сохранение...'
+
+  // изм. аватара
+  editAvatar({
+    avatar: avatarUrlInput.value
+  })
+    .then((res) => {
+      profileAvatar.src = res.avatar;
+
+      closePopup(editAvatarPopupElement);
+
+      btnSubmitAvatarPopup.textContent = 'Сохранить'
+    })
+    .catch((err) => {
+      console.log(err)
+      btnSubmitAvatarPopup.textContent = 'Сохранить'
+    })
+}
 
 // откр.формы профиля и подстановка значений в поля формы
 function openEditForm() {
@@ -46,10 +86,24 @@ function openEditForm() {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  titleEditForm.textContent = nameInputEditForm.value;
-  subtitleEditForm.textContent = jobeInputEditForm.value;
+  btnSubmitEditForm.textContent = 'Сохранение...'
 
-  closePopup(editPopupElement);
+  // редактирование профиля
+  editProfil({
+    name: nameInputEditForm.value,
+    about: jobeInputEditForm.value
+  })
+    .then((res) => {
+      titleEditForm.textContent = res.name;
+      subtitleEditForm.textContent = res.about;
+
+      closePopup(editPopupElement);
+      btnSubmitEditForm.textContent = 'Сохранить'
+    })
+    .catch((err) => {
+      console.log(err)
+      btnSubmitEditForm.textContent = 'Сохранить'
+    })
 }
 
 // откр. попапа с картинкой
@@ -68,7 +122,6 @@ function handleImgOpen(imgCard, titleCardImg) {
 
 // Форма добавления карточки
 function openAddCardPopup() {
-
   openPopup(addCardPopupElement);
 }
 
@@ -76,17 +129,30 @@ function openAddCardPopup() {
 function handleAddSubmit(evt) {
   evt.preventDefault();
 
+  btnSubmitAddCardForm.textContent = 'Сохранение...'
+
   const newCard = {
     name: nameInputAddCardForm.value,
     link: urlInputAddCardForm.value,
   };
-  addCard(newCard, "prepend");
 
-  closePopup(addCardPopupElement);
-  nameInputAddCardForm.value = "";
-  urlInputAddCardForm.value = "";
+  // сохранение карточки на сервере
+  saveCard(newCard)
+    .then((res) => {
+      addCard(res, "prepend");
 
-  changeButtonClass('add', true, btnSubmitAddCardForm, 'popup__submit-button_inactive')
+      closePopup(addCardPopupElement);
+      nameInputAddCardForm.value = "";
+      urlInputAddCardForm.value = "";
+
+      changeButtonClass('add', true, btnSubmitAddCardForm, 'popup__submit-button_inactive')
+
+      btnSubmitAddCardForm.textContent = 'Создать'
+    })
+    .catch((err) => {
+      console.log(err)
+      btnSubmitAddCardForm.textContent = 'Создать'
+    })
 }
 
 export { openAddCardPopup,
@@ -103,5 +169,13 @@ export { openAddCardPopup,
   addButton,
   btnCloseEditPopup,
   btnCloseAddPopup,
-  btnCloseImgPopup
+  btnCloseImgPopup,
+  titleEditForm,
+  subtitleEditForm,
+  editAvatarPopupElement,
+  profileOverlay,
+  profileAvatar,
+  openEditAvatarPopup,
+  btnCloseEditAvatarPopup,
+  handleAvatarSubmit
 }

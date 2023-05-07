@@ -13,14 +13,51 @@ import { openAddCardPopup,
   addButton,
   btnCloseEditPopup,
   btnCloseAddPopup,
-  btnCloseImgPopup
+  btnCloseImgPopup,
+  titleEditForm,
+  subtitleEditForm,
+  editAvatarPopupElement,
+  profileOverlay,
+  profileAvatar,
+  openEditAvatarPopup,
+  btnCloseEditAvatarPopup,
+  handleAvatarSubmit
 } from './components/modal.js'
-import initialCards from './components/cardImage.js'
+import { getInitialCards, getUserInfo, } from './components/api'
 
-// рендер карточек из массива
-initialCards.forEach((card) => {
-  addCard(card, "append");
+
+let userId = ''
+
+// заполнение профиль при загрузке страницы
+getUserInfo()
+  .then((res) => {
+    titleEditForm.textContent = res.name;
+    subtitleEditForm.textContent = res.about;
+    profileAvatar.src = res.avatar
+    console.log('getUserInfo', res)
+    userId = res._id
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+  // рендер карточек из массива
+getInitialCards()
+  .then((res) => {
+    res.forEach((card) => {
+      addCard(card, "append");
+    });
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+
+profileOverlay.addEventListener("click", openEditAvatarPopup);
+btnCloseEditAvatarPopup.addEventListener("click", function () {
+  closePopup(editAvatarPopupElement);
 });
+editAvatarPopupElement.addEventListener("submit", handleAvatarSubmit);
 
 editButton.addEventListener("click", openEditForm);
 btnCloseEditPopup.addEventListener("click", function () {
@@ -49,6 +86,9 @@ editPopupElement.addEventListener("click", function (evt) {
 imgPopup.addEventListener("click", function (evt) {
   closePopupFromOverlay(evt, imgPopup)
 })
+editAvatarPopupElement.addEventListener("click", function (evt) {
+  closePopupFromOverlay(evt, editAvatarPopupElement)
+})
 
 // Вызов функции валидации
 enableValidation({
@@ -59,3 +99,5 @@ enableValidation({
   inputErrorClass: 'popup__field_type_error',
   errorClass: 'popup__message-error_active'
 });
+
+export { userId }
