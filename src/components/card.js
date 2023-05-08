@@ -1,11 +1,7 @@
-import { userId } from '../index.js';
 import { addLike, deleteLike, deleteCard } from './api.js';
-import { handleImgOpen } from './modal.js'
+import { handleImgOpen } from '../index.js'
+import { userId, cardTemplate } from './utils.js'
 
-// для ф. createCard()
-const cardTemplate = document.querySelector("#card-template").content;
-// секция для вставки карточек
-const elements = document.querySelector(".elements");
 
 // добавление класса кнопке лайк
 function activeLikeBtn(likeCard) {
@@ -62,7 +58,6 @@ function createCard(card) {
   titleCardElement.textContent = card.name;
   likeCountCard.textContent = card.likes.length
 
-  console.log('card', card)
 
   // проверка лайка в обьекте карточки
   if (likeCheck(card)) {
@@ -103,20 +98,4 @@ function createCard(card) {
   return cardElement;
 }
 
-// доб. карточки на страницу
-function addCard(card, addMethod) {
-  const cardElement = createCard(card);
-
-  switch (addMethod) {
-    case "append":
-      elements.append(cardElement);
-      break;
-    case "prepend":
-      elements.prepend(cardElement);
-      break;
-  }
-}
-
-
-
-export { addCard }
+export { createCard }

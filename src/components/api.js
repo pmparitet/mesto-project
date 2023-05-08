@@ -6,16 +6,20 @@ const config = {
   }
 }
 
+const checkResponse = ((res) => {
+  if (res.ok) {
+    return res.json()
+  }
+
+  return Promise.reject(`Ошибка: ${res.status}`)
+})
+
 const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -24,11 +28,7 @@ const getInitialCards = () => {
     headers: config.headers
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -39,11 +39,7 @@ const getInitialCards = () => {
     body: JSON.stringify(data)
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -54,11 +50,7 @@ const saveCard = (data) => {
     body: JSON.stringify(data)
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -68,11 +60,7 @@ const deleteCard = (id) => {
     headers: config.headers,
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -82,11 +70,7 @@ const addLike = (id) => {
     headers: config.headers,
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -96,11 +80,7 @@ const deleteLike = (id) => {
     headers: config.headers,
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
@@ -111,11 +91,7 @@ const editAvatar = (data) => {
     body: JSON.stringify(data)
   })
   .then((res) => {
-    if (res.ok) {
-      return res.json()
-    }
-
-    return Promise.reject(`Ошибка: ${res.status}`)
+    return checkResponse(res)
   })
 }
 
