@@ -1,7 +1,6 @@
 import './pages/index.css'
 import { enableValidation, changeButtonClass } from './components/validate.js'
 import {
-  userId,
   elements,
   editButton,
   addButton,
@@ -36,6 +35,7 @@ import {
 import { getInitialCards, getUserInfo, editAvatar, editProfil, saveCard } from './components/api'
 import { createCard } from './components/card'
 
+let userId = ''
 
 // заполнение профиль при загрузке страницы
 getUserInfo()
@@ -228,4 +228,4 @@ enableValidation({
   errorClass: 'popup__message-error_active'
 });
 
-export { addCard, handleImgOpen }
+export { userId, addCard, handleImgOpen }

@@ -1,6 +1,6 @@
 import { addLike, deleteLike, deleteCard } from './api.js';
-import { handleImgOpen } from '../index.js'
-import { userId, cardTemplate } from './utils.js'
+import { userId, handleImgOpen } from '../index.js'
+import { cardTemplate } from './utils.js'
 
 
 // добавление класса кнопке лайк

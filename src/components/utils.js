@@ -1,4 +1,3 @@
-let userId = ''
 // для ф. createCard()
 const cardTemplate = document.querySelector("#card-template").content;
 // секция для вставки карточек
@@ -54,7 +53,6 @@ const btnCloseImgPopup = imgPopup.querySelector(".popup__close-button");
 
 
 export {
-  userId,
   cardTemplate,
   elements,
   editButton,
